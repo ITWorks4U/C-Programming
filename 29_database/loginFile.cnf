@@ -1,0 +1,7 @@
+address=	127.0.0.1		;ip_address
+user=		extern_user		;user_account
+password=	123cba			;user_password
+database=	Music			;database_name
+port=		3306			;port_number
+socket=		none			;unix_socket
+flag=		0				;client_flag

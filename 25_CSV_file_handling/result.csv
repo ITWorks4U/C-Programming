@@ -1,0 +1,8 @@
+  79,       Gold,         Au, 196.970, 2.400,      SOLID, NOBLE_METAL,    NATURAL
+  39,    Yttrium,          Y, 88.910, 1.300,      SOLID,      METAL,    NATURAL
+ 103, Lawrencium,         Lr, 260.000, 1.300,      SOLID,      METAL, RADIOACTIVE
+  35,    Bromine,         Br, 79.901, 2.800,     LIQUID,   NO_METAL,    NATURAL
+ 248,   Nobelium,         No, 259.000, 1.300,      SOLID,      METAL, ARTIFICIALLY
+  80,    Mercury,         Hg, 200.592, 1.900,     LIQUID,      METAL,    NATURAL
+   7,   Nitrogen,          N, 14.006, 3.000,        GAS,   NO_METAL,    NATURAL
+  86,      Radon,         Rn, 222.000, 0.000,        GAS,  NOBLE_GAS, RADIOACTIVE
