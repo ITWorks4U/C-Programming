@@ -21,11 +21,11 @@ int main() {
 	}
 
 	//	-----------
-	//	C-strings
+	//	C-strings (are more an array of characters)
 	//	-----------
 	char word[] = "Howdy! How're you?";
-	printf("word has %lu elements\n", sizeof(word));							//	9 elements? No! There're 36 "elements".
-	printf("word has %lu elements\n", sizeof(word) / sizeof(word[0]));			//	9 elements. :o)
+	printf("word has %lu elements\n", sizeof(word));
+	printf("word has %lu elements\n", sizeof(word) / sizeof(word[0]));
 
 	for(size_t i = 0; i < sizeof(word) / sizeof(word[0]); i++) {
 		printf("word element: %c\n", word[i]);
