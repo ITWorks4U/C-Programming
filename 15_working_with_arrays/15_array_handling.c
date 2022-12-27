@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void funny_function(int array[], size_t elements) {
 	for(size_t i = 0; i < elements; i++) {
@@ -24,7 +25,8 @@ int main() {
 	//	C-strings (are more an array of characters)
 	//	-----------
 	char word[] = "Howdy! How're you?";
-	printf("word has %lu elements\n", sizeof(word));
+	printf("word has %lu elements\n", sizeof(word));								//	Is NOT a good idea to determine the amount of characters!
+	printf("word has %lu elements\n", strlen(word));								//	use strlen() instead
 	printf("word has %lu elements\n", sizeof(word) / sizeof(word[0]));
 
 	for(size_t i = 0; i < sizeof(word) / sizeof(word[0]); i++) {
