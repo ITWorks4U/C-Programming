@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"stdint.h": "c",
+		"message_collector.h": "c",
+		"moon_landing.h": "c"
+	}
+}

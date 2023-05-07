@@ -1,0 +1,18 @@
+#	Simple moon landing simulation
+Terminal application written in C.
+
+##	general
+This small game represents a simple moon landing simulation. It's a terminal game, where you have the control
+of your space ship... or not.
+
+You're starting with a space ship and it's your mission to land on the moon (very) smoothy.
+There's no implementation of getting off the moon for a later purpose.
+
+It you're smashing on the moon surface, then you're in luck. You've proved, that moles exists on the moon. You! :o)
+
+##	Which OS may run that game?
+This application has been built on Linux Mint 20.3 cinnamon. It should also run on any other linux machine,
+however, on Windows, MAC, ... it MIGHT run, too.
+
+##	How to build?
+Run the makefile to build the application. If everything went well, just launch the application with ./moon_landing_simulation
