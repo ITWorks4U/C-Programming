@@ -17,7 +17,9 @@ int main(void) {
 		structure has a size of 32 bytes, you're "just" using 1/8 of your
 		struct.
 	*/
-	int *i_ptr = (int *) exM;																				//	without a cast, you'll get a warning
+	int *i_ptr = (int *) exM;																				//	without a cast, you'll get a warning (C only) in C++ you'll get an error
+
+	printf("i_ptr = %d (%p)\n", i_ptr[0], i_ptr);
 
 	free(i_ptr);																							//	You >>could<< do this...
 	free(exM);																								//	...but you'll fail here!
