@@ -6,7 +6,8 @@ int main(void) {
 		pointer arithmetic means:	"incrementing / decrementing a pointer and see, which next value returns"
 		Guess what? It's no guarantee, that this works always fine!
 
-		Since a pointer has a known size of 8 bytes, this won't work with pointer arithmetic!
+		Since a pointer has a known size of n bytes, depending on the machine, you're working on,
+		this won't work with pointer arithmetic!
 	*/
 
 	int array[] = {0,1,2,3,4,5,6};

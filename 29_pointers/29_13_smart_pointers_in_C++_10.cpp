@@ -48,7 +48,13 @@ int main() {
 	cout << "deleting e0 instance:" << endl;
 	e0.reset();
 
-	/*	in comparison with raw pointers	*/
+	/*	There's no need to delete your example instance, because
+		this has been released automatically.
+	*/
+
+	//	----------------------------------
+	//	in comparison with raw pointers
+	//	----------------------------------
 	Example *ex0 = new Example();
 	ex0->printToConsole();
 
@@ -59,8 +65,7 @@ int main() {
 	cout << "address of ex1 " << ex1 << "H" << endl;
 
 	//	Since ex1 is going to delete, ex0 is also affected
-	//	and these pointers STILL points to the allocated
-	//	memory address!
+	//	and these pointers STILL points to the memory address!
 	delete ex1;
 
 	return 0;

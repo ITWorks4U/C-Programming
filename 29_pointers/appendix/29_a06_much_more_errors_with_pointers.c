@@ -22,22 +22,23 @@ int main() {
 	way for reading from keyboard. :o)
 */
 
-/*
+	/*	using scanf() function	*/
 	scanf(" %s", input);
 	printf("value of input: %s\n", input);
-*/
 
-/*
+	/*	using fgets() function	*/
 	fgets(input, MAX_CHARS, stdin);
 	printf("value of input: %s\n", input);
-*/
 
-/*
+	/*	using strncpy() function	*/
 	strncpy(input, word, strlen(word));
 	printf("value of input: %s\n", input);
-*/
 
-//	free(input);
+	/*	Since input is defined as "char *input" without using malloc, calloc, new, ...,
+		it's not stored on the heap, it's on the stack, thus the free function
+		below will cause a segmentation fault on runtime!
+	 */
+	// free(input);
 
 	return EXIT_SUCCESS;
 }

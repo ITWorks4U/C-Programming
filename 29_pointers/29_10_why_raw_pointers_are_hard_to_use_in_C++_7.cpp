@@ -5,6 +5,9 @@ using namespace std;
 
 /*	It wouldn't been better in C++. Instead of using a signal handling
 	an exception handling is also unable to release allocated memory.
+
+	C++ comes with "smart pointers", which will solve a bunch of
+	problems, which you haven't known yet.
 */
 
 struct Math {

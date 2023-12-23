@@ -1,5 +1,3 @@
-/* determine, if a variable is stored on the stack or heap */
-
 //	required for pthread_getattr_np function
 #define _GNU_SOURCE
 
@@ -7,6 +5,17 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <inttypes.h>
+
+/*	Often misinterpreted:
+	"Since a pointer is in use, it's always stored on the heap."
+	That's wrong. It depends on how you use the pointer. By using
+	a function like malloc(), calloc(), new, ... it's stored on the
+	heap during runtime, whereas YOU MUST ensure to release this
+	allocated memory by your own.
+
+	However, a pointer can also be stored on the stack, even
+	it refers to a pointer on the heap.
+ */
 
 struct S {};
 

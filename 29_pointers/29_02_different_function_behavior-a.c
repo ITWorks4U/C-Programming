@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*	What happens, when you're using functions with at least
+	one argument? A function can be called with an argument
+	by value and also by reference. What's the difference
+	between them?
+
+	"call by value":
+		You just want to transfer the content
+		of the variable(s) to a function without
+		knowing / interesting >>where<< this
+		variable(s) has been stored.
+
+	"call by reference":
+		You want to use the >>address<< of an object,
+		which has any content to use this in the function.
+*/
+
 struct Example {
 	int i_member;
 	char string1[100];
@@ -13,7 +29,7 @@ void function1(int a) {
 }
 
 /*	function call by reference	*/
-void function2(int *a) {
+void function2(const int *a) {
 	puts("function2 was called...");
 }
 
@@ -33,11 +49,11 @@ int main(void) {
 	/*	normal usage of a function	*/
 	function1(100);
 
-	/*	Surprised?	*/
+	/*	Are you surprised? By the way, this won't work 1:1 in C++!	*/
 	function1(ex);
 	function1(NULL);
 
-	/*	This works in C, too.	*/
+	/*	This works in C, too, which doesn't work in C++.	*/
 	function2(100);
 
 	/*	normal usage of a function	*/

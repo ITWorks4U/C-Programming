@@ -76,5 +76,9 @@ int main() {
 	cout << "deleting e0 instance:" << endl;
 	e0.reset();
 
+	/*	There's no need to delete your example instance, because
+		this has been released automatically.
+	*/
+
 	return 0;
 }

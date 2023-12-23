@@ -15,12 +15,27 @@
 */
 
 int main(void) {
+
+	/*	usually, this will be a macro like:
+		#define GIGABYTE 1024*1024*1024
+
+		or also possible:
+		#define GIGABYTE 1 << 30
+
+		because this macro will be handled
+		before the integer expression is going
+		to handle
+	*/
 	int gigabyte = 1024*1024*1024;
 	int ctr = 0;
 
 	/*	Don't, seriously, don't do this!	*/
 
 	while(true) {
+		/*	ptr will always been overwritten and the previous area is not going
+			to release or an another pointer refers to this => Extremely memory
+			leaks are incoming here!
+		*/
 		void *ptr = malloc(gigabyte);
 
 		if (ptr == NULL) {

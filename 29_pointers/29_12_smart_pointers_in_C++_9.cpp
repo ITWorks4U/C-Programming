@@ -41,5 +41,9 @@ int main() {
 	/*	it won't throw an exception	*/
 	e0.reset();
 
+	/*	There's no need to delete your example instance, because
+		this has been released automatically.
+	*/
+
 	return 0;
 }

@@ -9,7 +9,8 @@
 	You MAY use delete for a field or delete[] for a single object, however,
 	it causes an undefined behavior and memory leaks often occurs.
 
-	Recommendation: Don't use raw pointers in C++.
+	Recommendation: Seriously, don't use raw pointers in C++.
+	Use "smart pointers" instead.
 */
 
 int main() {

@@ -44,8 +44,12 @@ int main() {
 	cout << "---------------------" << endl;
 	cout << "deleting e0 instance:" << endl;
 
-	/*	it won't throw an exception	*/
+	/*	it won't throw an exception here	*/
 	e0.reset();
+
+	/*	There's no need to delete your example instance, because
+		this has been released automatically.
+	*/
 
 	return 0;
 }

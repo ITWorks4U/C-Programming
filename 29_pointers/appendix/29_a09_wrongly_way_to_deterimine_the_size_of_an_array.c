@@ -5,20 +5,26 @@
 	Moving an array to a function causes, that you
 	really don't have a way to determine the correct
 	size of this array, because a pointer always
-	has a fixed size of 8 bytes!
+	has a fixed size of n bytes, depending on the
+	machine you're working on!
 
-	by the way, it makes no difference between
+	By the way, it makes no difference between
 	int *ptr and int ************************ptr :o)
 */
 
 void print_array(int *ptr) {
-	size_t n = (sizeof(ptr) / sizeof(ptr[0]));																		//	always 2
+	/*	for a 64 bit machine, ...	*/
+
+	/*	n has 2	bytes	*/
+	size_t n = (sizeof(ptr) / sizeof(ptr[0]));
 	printf("The array has %lu elements.\n", n);
 
-	size_t p = sizeof(ptr);																							//	always 8
+	/*	p has 8	bytes	*/
+	size_t p = sizeof(ptr);
 	printf("The array has %lu elements.\n", p);
 
-	size_t q = (sizeof(ptr) / sizeof(int *));																		//	always 1
+	/*	q has 1	byte	*/
+	size_t q = (sizeof(ptr) / sizeof(int *));
 	printf("The array has %lu elements.\n", q);
 }
 
@@ -31,14 +37,26 @@ int main(void) {
 		of elements.
 	*/
 	size_t n = (sizeof(array) / sizeof(array[0]));
-	printf("The array has %lu elements.\n", n);
+	printf("The array \"n\" has %lu elements.\n", n);
 
 	/*	What happens, when you're using an empty array?	*/
-	// int array[] = {};
+	int a[] = {};
+	n = (sizeof(a) / sizeof(a[0]));
+	printf("The array \"a\" has %lu elements.\n", n);
 
 	/*	Or a NULL array?	*/
-	// int *array = NULL;
+	int *arrPtr = NULL;
+	n = (sizeof(arrPtr) / sizeof(arrPtr[0]));
+	printf("The array \"arrPtr\" has %lu elements.\n", n);
+
+	/*	calling the function with the array(s) as argument...
+
+		What are you expecting there?
+	*/
 	print_array(array);
+	print_array(a);
+	print_array(arrPtr);
+	print_array(NULL);
 
 	return EXIT_SUCCESS;
 }
