@@ -2,7 +2,7 @@
 
 With pointers you're able to access to addresses instead of the values, thus
 your workflow can be much more faster than expeced, however, by using pointers
-it also results a huge risk.
+it also results a huge risk. You can also run to the next wall if you don't mind.
 
 ##	Can I use pointers in C as well as in C++?
 -	**Pointers should be used on C programming only! In C++ you can work with pointers, but this is NOT recommended, because C++ wasn't designed for working with pointers and it results different behaviors in contrast to C!**
