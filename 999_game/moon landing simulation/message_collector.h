@@ -1,17 +1,15 @@
 #ifndef MESSAGE_COLLECTOR_H
 #define MESSAGE_COLLECTOR_H
 
-typedef enum {
-	NO_ERROR = 0,
-	FILE_NOT_FOUND = 1,
-	NO_READ_ACCESS = 2,
-	NO_WRITE_ACCESS = 4,
-	MEMORY_ERROR = 8,
-	SIMULATION_INIT_ERROR = 16,
-	PLANET_INIT_ERROR = 32,
-	ERROR_SAVE_FILE = 64
-} ErrorCollector;
+/*	only ERR_INIT_GAME and ERR_REGEX are is use at the moment	*/
 
-void print_error_message(ErrorCollector collector);
+#define	ERR_IO_FILE		0x1
+#define	ERR_IO_READ		0x2
+#define	ERR_IO_WRITE	0x4
+#define	ERR_INIT_GAME	0xA0
+#define	ERR_INIT_PLANET	0xA1
+#define	ERR_REGEX		0xB0
+
+void print_error_message(const int err_code);
 
 #endif

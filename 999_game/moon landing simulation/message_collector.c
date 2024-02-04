@@ -1,26 +1,25 @@
 #include "message_collector.h"
 #include <stdio.h>
 
-void print_error_message(ErrorCollector collector) {
-	switch(collector) {
-		case NO_ERROR:
+void print_error_message(const int err_num) {
+	switch(err_num) {
+		case ERR_IO_FILE:
+			//TODO:	implementing...
 			break;
-		case FILE_NOT_FOUND:
+		case ERR_IO_READ:
+			//TODO:	implementing...
 			break;
-		case NO_READ_ACCESS:
+		case ERR_IO_WRITE:
+			//TODO:	implementing...
 			break;
-		case NO_WRITE_ACCESS:
+		case ERR_INIT_GAME:
+			puts("error: Initialisation for moon landing simulator failed.");
 			break;
-		case MEMORY_ERROR:
+		case ERR_INIT_PLANET:
+			//TODO:	implementing...
 			break;
-		case SIMULATION_INIT_ERROR:
-			puts("error: initialisation for moon landing simulator failed");
-			break;
-		case PLANET_INIT_ERROR:
-			break;
-		case ERROR_SAVE_FILE:
-			break;
-		default:
+		case ERR_REGEX:
+			puts("error: Creating the regex object failed. Unable to continue...");
 			break;
 	}
 }

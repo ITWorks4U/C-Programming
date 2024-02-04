@@ -11,19 +11,11 @@
 //	---------------
 static SpaceShip *ship = NULL;
 static const double current_time = 1.0;
-static ErrorCollector collector = NO_ERROR;
 static const uint_t init_fuel = 5000;
-// static char input[BUFFER_SIZE];
-// static regex_t regular_expression;
 
 //	---------------
 //	moon landing simulation
 //	---------------
-
-/// @brief initialisation stuff
-// void init_setup(void) {
-// 	regcomp(&regular_expression, REGEX_FILTER, REG_EXTENDED | REG_NOSUB);
-// }
 
 /// @brief Updating the new speed for the space ship.
 /// @param fuel_amount amount of fuel for current time
@@ -76,19 +68,15 @@ void print_summary(void) {
 			puts("Do you have a health insurance? Just asking...");
 		}
 	}
-	
-	puts("Game over.");
 }
 
 /// @brief Running the moon landing simulation. 
 void moon_landing_simulation(void) {
 	ship = calloc(1, sizeof(SpaceShip));
 	if (ship == NULL) {
-		collector = SIMULATION_INIT_ERROR;
-		print_error_message(collector);
+		print_error_message(ERR_INIT_GAME);
 	} else {
-		// init_setup();
-
+		
 		//	---------------
 		//	random values for
 		//	the current simulation
@@ -126,7 +114,7 @@ void moon_landing_simulation(void) {
 			print_summary();
 		}
 
-		free(ship);
+		clean_up_the_mess();
 	}
 }
 
@@ -157,54 +145,55 @@ double calculate_speed(double a, double v0) {
 /// @brief Entering a new fuel amount. Must be within a range of 0 and 100.
 /// @return the fuel input to use
 uint_t fuel_input(void) {
-	printf("\nHow many speed (0-100)?: ");
+	bool on_continue = true;
+	char input[BUFFER_SIZE];
+	memset(input, '\0', BUFFER_SIZE);
 
-	/*
-	 * experimental implementation by using a buffer and try to pass that
-	 * trough the regular expression filter
-	 *
-	while(true) {
-		memset(input, '\0', BUFFER_SIZE);
+	do {
+		printf("How many speed (0-100)?: ");
 		fgets(input, BUFFER_SIZE, stdin);
-		// clear_cache();
 
-		for(size_t i = 0; i < BUFFER_SIZE; i++) {
-			if (input[i] == '\n') {
-				input[i] = '\0';
-				break;
-			}
-		}
+		/*	getting rid of \n from fgets()	*/
+		size_t length = strlen(input);
+		input[length-1] = '\0';
 
-		if ((regexec(&regular_expression, input, 0, NULL, 0)) == 0) {
-			break;
+		int ret = on_match(input);
+
+		if (ret == 0) {
+			on_continue = false;
+		} else if(ret == -1) {
+			print_error_message(ERR_REGEX);
+			clean_up_the_mess();
+		} else {
+			puts("Input was out of range...");
 		}
-	}
+	} while (on_continue);
 
 	return (uint_t) strtoul(input, NULL, 10);
-	*/
-	
-	/*	it's primitive, but works better than the regular expression variant ¯\_(ツ)_/¯ */
-		int result_value = -1;
-		uint_t fuel_amount;
-		
-		do {
-			result_value = scanf("%u", &fuel_amount);
-			char c = '\0';
-
-			do {
-				c = getchar();
-			} while(c != '\n');
-		} while (result_value != 1);
-
-		return fuel_amount;
-	/**/
 }
 
-/// @brief Clear input cache.
-///	@deprecated Won't work as expected.
-void clear_cache(void) {
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF);
+/// @brief Checks, if the certain input passes trough the regular expression filter.
+/// @param input input to check
+/// @return 0 on match, 1 on not match, -1 on regcomp() error
+int on_match(const char *input) {
+	int result = 1;
+	regex_t reg;
+
+	if (regcomp(&reg, REGEX_FILTER, REG_EXTENDED) < 0) {
+		return -1;
+	}
+	
+	result = regexec(&reg, input, 0, NULL, 0);
+	regfree(&reg);
+
+	return result;
+}
+
+/// @brief Removing the allocated memory.
+void clean_up_the_mess(void) {
+	free(ship);
+	ship = NULL;
+	puts("Game over...");
 }
 
 //	---------------
