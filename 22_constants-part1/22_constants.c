@@ -17,6 +17,9 @@
 	fun fact:	in C a constant expression
 				can also have no value
 				in C++: it's illegal
+
+	Basicly, you shouldn't use "const" to expect a constant expression.
+	For more informations take a look to "32_constant-part2".
 */
 const int	expression_const = 123;
 
