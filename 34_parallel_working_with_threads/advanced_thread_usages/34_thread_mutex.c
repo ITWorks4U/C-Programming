@@ -115,7 +115,9 @@ void *write_file(void *) {
 
 int main(void) {
 	clock_t full_app_start = clock();
+	pthread_mutex_init(&file_mutex, NULL);
 	pthread_t thread1, thread2;
+	
 	
 	if (pthread_create(&thread1, NULL, write_file, NULL) != 0) {
 		perror("unable to launch first thread...");
@@ -129,6 +131,7 @@ int main(void) {
 
 	pthread_join(thread1, NULL);
 	pthread_join(thread2, NULL);
+	pthread_mutex_destroy(&file_mutex);
 	puts("Aaaaaand done!");
 
 	clock_t full_app_stop = clock();
