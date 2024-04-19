@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <regex.h>
+#include <signal.h>
 
 //	---------------
 //	static global fields
@@ -76,7 +77,11 @@ void moon_landing_simulation(void) {
 	if (ship == NULL) {
 		print_error_message(ERR_INIT_GAME);
 	} else {
-		
+
+		/*	signal registration for application	*/
+		signal(SIGINT, handler_function);
+		signal(SIGTERM, handler_function);
+
 		//	---------------
 		//	random values for
 		//	the current simulation
@@ -118,6 +123,14 @@ void moon_landing_simulation(void) {
 	}
 }
 
+/// @brief Handler function for incoming singals, like CTRL + C / termination by terminal (sigkill => without -9)
+/// @param signal_number	required for signal function; has no effect here
+void handler_function(int signal_number) {
+	puts("\nTerminating the application...");
+	clean_up_the_mess();
+	exit(EXIT_SUCCESS);
+}
+
 /// @brief Check, if enough fuel is left.
 /// @return true, if fuel left,
 ///			false, otherwise
@@ -147,11 +160,14 @@ double calculate_speed(double a, double v0) {
 uint_t fuel_input(void) {
 	bool on_continue = true;
 	char input[BUFFER_SIZE];
-	memset(input, '\0', BUFFER_SIZE);
 
 	do {
+		memset(input, '\0', BUFFER_SIZE);
 		printf("How many speed (0-100)?: ");
 		fgets(input, BUFFER_SIZE, stdin);
+
+		/*	discards any input buffer left	*/
+		while(getchar() != '\n') {}
 
 		/*	getting rid of \n from fgets()	*/
 		size_t length = strlen(input);

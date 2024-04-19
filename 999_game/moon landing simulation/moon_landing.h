@@ -33,6 +33,7 @@ void print_status(uint_t elapsed_seconds);
 void print_summary(void);
 void moon_landing_simulation(void);
 void clean_up_the_mess(void);
+void handler_function(int signal_number);
 
 uint_t fuel_input(void);
 int on_match(const char *input);
